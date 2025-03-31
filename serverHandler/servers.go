@@ -47,7 +47,7 @@ func ProxyHandler(w http.ResponseWriter, r *http.Request) {
 func Healthcheck(u *url.URL, index int) {
 	healthURL := fmt.Sprintf("%s/health", u.String())
 	resp, _ := http.Get(healthURL)
-	if resp.StatusCode != 200 {
+	if resp.StatusCode != http.StatusOK {
 		backendHealth[index] = false
 		fmt.Println("Server", backendServers[index].String(), "is down")
 	} else {
