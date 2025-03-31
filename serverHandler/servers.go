@@ -34,12 +34,13 @@ func GetNextBackend() *url.URL {
 	return nil
 }
 func ProxyHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("ProxyHandler called")
 	backendserver := GetNextBackend()
 	if backendserver == nil {
 		http.Error(w, "No healthy backend servers available", http.StatusServiceUnavailable)
 		return
 	}
-	fmt.Println(" Sending traffic to  server", backendserver)
+	fmt.Println("Sending traffic to server", backendserver)
 	proxy := httputil.NewSingleHostReverseProxy(backendserver)
 	proxy.ServeHTTP(w, r)
 }
