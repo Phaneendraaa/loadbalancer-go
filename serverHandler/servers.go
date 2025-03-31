@@ -6,7 +6,6 @@ import (
 	"net/http/httputil"
 	"net/url"
 	"sync"
-	"time"
 )
 
 var currBackend int
@@ -55,6 +54,7 @@ func Healthcheck(u *url.URL, index int) {
 		fmt.Printf("Server %s is healthy\n", u.String())
 	}
 }
+
 // func HealthCheckLoop() {
 // 	for {
 // 		// Check health of each backend every 10 seconds
