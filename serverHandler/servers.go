@@ -64,6 +64,6 @@ func HealthCheckLoop() {
 			Healthcheck(backend, i)
 		}
 
-		time.Sleep(10 * time.Second)
+		time.Sleep(20 * time.Second)
 	}
 }
