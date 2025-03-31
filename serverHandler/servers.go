@@ -6,6 +6,7 @@ import (
 	"net/http/httputil"
 	"net/url"
 	"sync"
+	"time"
 )
 
 var currBackend int
@@ -34,7 +35,7 @@ func GetNextBackend() *url.URL {
 	return nil
 }
 func ProxyHandler(w http.ResponseWriter, r *http.Request) {
-	
+
 	backendserver := GetNextBackend()
 	if backendserver == nil {
 		http.Error(w, "No healthy backend servers available", http.StatusServiceUnavailable)
@@ -56,13 +57,13 @@ func Healthcheck(u *url.URL, index int) {
 	}
 }
 
-// func HealthCheckLoop() {
-// 	for {
-// 		// Check health of each backend every 10 seconds
-// 		for i, backend := range backendServers {
-// 			Healthcheck(backend, i)
-// 		}
+func HealthCheckLoop() {
+	for {
+		// Check health of each backend every 10 seconds
+		for i, backend := range backendServers {
+			Healthcheck(backend, i)
+		}
 
-// 		time.Sleep(10 * time.Second)
-// 	}
-// }
+		time.Sleep(10 * time.Second)
+	}
+}

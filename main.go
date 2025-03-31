@@ -10,6 +10,6 @@ import (
 func main() {
 	fmt.Println("Started load balancer")
 	http.HandleFunc("/", serverHandler.ProxyHandler)
-
+	go serverHandler.HealthCheckLoop()
 	http.ListenAndServe(":8082", nil)
 }
