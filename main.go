@@ -33,6 +33,9 @@ func main() {
 	
 	go serverHandler.HealthCheckLoop()
 
+	fmt.Println("Server running on 8082")
 	
 	http.ListenAndServe(":8082", nil)
+
+
 }
