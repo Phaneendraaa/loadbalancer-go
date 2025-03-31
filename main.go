@@ -25,6 +25,7 @@ func getNextBackend() *url.URL {
 }
 func proxyHandler(w http.ResponseWriter, r *http.Request) {
 	backendserver := getNextBackend()
+	fmt.Println(" Sending traffic to  server", backendserver)
 	proxy := httputil.NewSingleHostReverseProxy(backendserver)
 	proxy.ServeHTTP(w, r)
 }
