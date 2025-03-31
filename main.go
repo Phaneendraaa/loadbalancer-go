@@ -31,5 +31,5 @@ func proxyHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	fmt.Println("Started load balancer")
 	http.HandleFunc("/", proxyHandler)
-	http.ListenAndServe(":80", nil)
+	http.ListenAndServe(":8080", nil)
 }
