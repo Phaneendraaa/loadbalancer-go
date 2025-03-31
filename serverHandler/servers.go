@@ -55,13 +55,13 @@ func Healthcheck(u *url.URL, index int) {
 		fmt.Printf("Server %s is healthy\n", u.String())
 	}
 }
-func HealthCheckLoop() {
-	for {
-		// Check health of each backend every 10 seconds
-		for i, backend := range backendServers {
-			Healthcheck(backend, i)
-		}
+// func HealthCheckLoop() {
+// 	for {
+// 		// Check health of each backend every 10 seconds
+// 		for i, backend := range backendServers {
+// 			Healthcheck(backend, i)
+// 		}
 
-		time.Sleep(10 * time.Second)
-	}
-}
+// 		time.Sleep(10 * time.Second)
+// 	}
+// }
