@@ -44,7 +44,7 @@ func ProxyHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "No healthy backend servers available", http.StatusServiceUnavailable)
 		return
 	}
-	fmt.Println("Sending traffic to server", backendserver)
+	fmt.Println(" ---------  Sending traffic to server --------->", backendserver)
 	proxy := httputil.NewSingleHostReverseProxy(backendserver)
 	proxy.ServeHTTP(w, r)
 }
