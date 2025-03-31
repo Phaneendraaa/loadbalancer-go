@@ -11,12 +11,16 @@ import (
 
 var currBackend int
 var mu sync.Mutex
-var backendServers = []*url.URL{
-	{Scheme: "http", Host: "3.84.189.215"},
-	{Scheme: "http", Host: "34.238.251.205"},
-	{Scheme: "http", Host: "18.206.250.71"},
+var backendServers = []*url.URL{}
+var backendHealth = []bool{}
+var backendHealthMu sync.Mutex 
+
+func IntializeServers(Server *url.URL) {
+	backendServers = append(backendServers, Server)
+	backendHealthMu.Lock()
+	backendHealth = append(backendHealth, true)
+	backendHealthMu.Unlock()
 }
-var backendHealth = []bool{true, true, true}
 
 func GetNextBackend() *url.URL {
 	mu.Lock()
